@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  Coffee, IceCream, Utensils, Ticket, Landmark, Beer, Umbrella, Bike, 
-  Gift, Mountain, Sunset, Train, Droplets, Car, Ship, Wine, Map, 
-  Heart, ShoppingBag, Wind, Star, Palmtree, Camera, Anchor, Plane, 
-  Gem, Home, X, Copy, Check 
+import {
+  Coffee, IceCream, Utensils, Ticket, Landmark, Beer, Umbrella, Bike,
+  Gift, Mountain, Sunset, Train, Droplets, Car, Ship, Wine, Map,
+  Heart, ShoppingBag, Wind, Star, Palmtree, Camera, Anchor, Plane,
+  Gem, Home, X, Copy, Check
 } from 'lucide-react';
 
 const GIFTS_DATA = [
@@ -82,10 +82,10 @@ const GIFTS_DATA = [
 ];
 
 export default function Gifts() {
-  const [selectedGift, setSelectedGift] = useState<{id: number, name: string, price: number, icon: any} | null>(null);
+  const [selectedGift, setSelectedGift] = useState<{ id: number, name: string, price: number, icon: any } | null>(null);
   const [copied, setCopied] = useState(false);
 
-  const pixKey = "casamento@marcosjoseane.com.br";
+  const pixKey = "38566190890";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(pixKey);
@@ -102,8 +102,8 @@ export default function Gifts() {
             {categoryGroup.items.map((gift) => {
               const Icon = gift.icon;
               return (
-                <div 
-                  key={gift.id} 
+                <div
+                  key={gift.id}
                   onClick={() => setSelectedGift(gift)}
                   className="bg-white border border-bege hover:border-salvia p-6 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col items-center text-center group"
                 >
@@ -125,13 +125,13 @@ export default function Gifts() {
       {selectedGift && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
           <div className="bg-white rounded-lg p-8 max-w-md w-full relative animate-in fade-in zoom-in duration-200 shadow-2xl">
-            <button 
+            <button
               onClick={() => setSelectedGift(null)}
               className="absolute top-4 right-4 text-grafite/60 hover:text-black transition-colors"
             >
               <X className="w-6 h-6" />
             </button>
-            
+
             <div className="text-center mb-6">
               <div className="w-20 h-20 bg-salvia/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-salvia/30">
                 <selectedGift.icon className="w-10 h-10 text-oliva" />
@@ -142,10 +142,10 @@ export default function Gifts() {
             </div>
 
             <div className="bg-bege/20 p-4 rounded-lg text-center mb-6 border border-bege">
-              <p className="text-sm font-medium text-grafite mb-2">Chave PIX (Email)</p>
+              <p className="text-sm font-medium text-grafite mb-2">Chave PIX (CPF)</p>
               <p className="font-mono text-lg text-black mb-4 select-all">{pixKey}</p>
-              
-              <button 
+
+              <button
                 onClick={handleCopy}
                 className="flex items-center justify-center gap-2 w-full bg-oliva text-white p-3 rounded font-medium hover:bg-oliva/90 transition-colors shadow-sm"
               >

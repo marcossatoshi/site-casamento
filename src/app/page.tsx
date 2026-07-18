@@ -4,13 +4,14 @@ import Image from 'next/image';
 
 export default async function Home() {
   const confirmedGuests = await getConfirmedGuestsCount();
+  const displayCount = Math.max(10, confirmedGuests);
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-64px)] font-sans bg-branco text-grafite selection:bg-salvia selection:text-white relative">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070"
+          src="/hero-bg.png"
           alt="Wedding Background"
           fill
           priority
@@ -27,7 +28,7 @@ export default async function Home() {
             Vamos nos casar
           </h2>
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-light text-grafite leading-tight drop-shadow-sm">
-            Marcos Satoshi <br /> & <br /> Joseane Mansano
+            Joseane Mansano <br /> & <br /> Marcos Satoshi
           </h1>
           
           <div className="pt-8 pb-4">
@@ -48,7 +49,7 @@ export default async function Home() {
             <div className="md:border-l border-bege/50 md:pl-8 flex flex-col items-center justify-center">
               <p className="text-sm uppercase tracking-widest text-grafite/70 mb-2 font-medium">Convidados Confirmados</p>
               <div className="text-5xl font-light text-oliva mb-2">
-                {confirmedGuests}
+                {displayCount}
               </div>
               <p className="text-xs text-grafite/60 uppercase tracking-widest">Pessoas</p>
             </div>
