@@ -40,32 +40,11 @@ export default function RSVP() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-grafite mb-1">Email</label>
-          <input 
-            type="email"
-            name="email" 
-            required 
-            className="w-full p-3 border border-bege rounded focus:outline-none focus:border-salvia" 
-            placeholder="seu@email.com"
-          />
-        </div>
-        <div>
           <label className="block text-sm font-medium text-grafite mb-1">Você irá comparecer?</label>
           <select name="attending" className="w-full p-3 border border-bege rounded focus:outline-none focus:border-salvia bg-white">
             <option value="true">Sim, confirmadíssimo!</option>
             <option value="false">Não poderei ir</option>
           </select>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-grafite mb-1">Número de Acompanhantes (Adultos + Crianças)</label>
-          <input 
-            type="number"
-            name="guests_count" 
-            min="0"
-            defaultValue="0"
-            required 
-            className="w-full p-3 border border-bege rounded focus:outline-none focus:border-salvia" 
-          />
         </div>
         <button 
           type="submit" 

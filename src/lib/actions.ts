@@ -54,9 +54,9 @@ export async function addMessage(formData: FormData) {
 
 export async function submitRSVP(formData: FormData) {
   const name = formData.get('name') as string;
-  const email = formData.get('email') as string;
+  const email = ''; // Campo removido pelo usuário
   const attending = formData.get('attending') === 'true';
-  const guests_count = parseInt(formData.get('guests_count') as string || '0', 10);
+  const guests_count = 1; // Cada RSVP vale como 1 pessoa agora
 
   if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
     const { error } = await supabase
@@ -126,7 +126,7 @@ export async function getConfirmedGuestsCount() {
       return 10;
     }
 
-    return data.reduce((sum, row) => 10 + sum + (row.guests_count || 0), 0);
+    return data.reduce((sum, row) => sum + (row.guests_count || 0), 0);
   }
 
   return mockRSVPs

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useTransition } from 'react';
-import { X, Copy, Check, Gift as GiftIcon, Loader2 } from 'lucide-react';
+import { X, Copy, Check, Gift as GiftIcon, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 import { purchaseGift } from '@/lib/actions';
 
@@ -17,6 +17,7 @@ type Gift = {
 export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
   const [gifts, setGifts] = useState<Gift[]>(initialGifts || []);
   const [selectedGift, setSelectedGift] = useState<Gift | null>(null);
+  const [openCategories, setOpenCategories] = useState<string[]>([]);
   const [copied, setCopied] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -34,6 +35,14 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
     category: cat,
     items: gifts.filter(g => g.category === cat)
   })).filter(group => group.items.length > 0);
+
+  const toggleCategory = (category: string) => {
+    setOpenCategories(prev => 
+      prev.includes(category) 
+        ? prev.filter(c => c !== category)
+        : [...prev, category]
+    );
+  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(pixKey);
@@ -65,49 +74,65 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
   }
 
   return (
-    <div className="w-full max-w-6xl mx-auto space-y-16">
-      {groupedGifts.map((categoryGroup, index) => (
-        <div key={index} className="text-left">
-          <h3 className="text-2xl font-light text-oliva mb-8 border-b border-bege pb-2">{categoryGroup.category}</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {categoryGroup.items.map((gift) => (
-              <div
-                key={gift.id}
-                onClick={() => !gift.is_sold_out && setSelectedGift(gift)}
-                className={`bg-white border p-6 rounded-lg shadow-sm flex flex-col items-center text-center transition-all ${
-                  gift.is_sold_out 
-                    ? 'border-gray-200 opacity-60 grayscale cursor-not-allowed' 
-                    : 'border-bege hover:border-salvia hover:shadow-md cursor-pointer group'
-                }`}
-              >
-                <div className="w-20 h-20 bg-bege/30 rounded-full flex items-center justify-center mb-4 overflow-hidden shrink-0 relative">
-                  {gift.image ? (
-                    <Image src={gift.image} alt={gift.name} fill className="object-cover" />
-                  ) : (
-                    <GiftIcon className={`w-8 h-8 ${gift.is_sold_out ? 'text-gray-400' : 'text-oliva group-hover:scale-110 transition-transform'}`} />
-                  )}
-                </div>
-                <h4 className={`font-medium mb-2 flex-grow ${gift.is_sold_out ? 'text-gray-500 line-through' : 'text-grafite'}`}>
-                  {gift.name}
-                </h4>
-                <p className={`font-bold mt-auto ${gift.is_sold_out ? 'text-gray-400' : 'text-oliva'}`}>
-                  R$ {gift.price.toFixed(2)}
-                </p>
-                <button 
-                  disabled={gift.is_sold_out}
-                  className={`mt-4 text-sm font-medium uppercase tracking-wider transition-colors ${
-                    gift.is_sold_out 
-                      ? 'text-red-500/80 bg-red-50 px-3 py-1 rounded' 
-                      : 'text-salvia group-hover:text-oliva'
-                  }`}
-                >
-                  {gift.is_sold_out ? 'Esgotado' : 'Presentear'}
-                </button>
+    <div className="w-full max-w-6xl mx-auto space-y-6">
+      {groupedGifts.map((categoryGroup, index) => {
+        const isOpen = openCategories.includes(categoryGroup.category);
+        return (
+          <div key={index} className="text-left border border-bege rounded-lg bg-white/80 backdrop-blur-sm overflow-hidden shadow-sm transition-all duration-300">
+            <button 
+              onClick={() => toggleCategory(categoryGroup.category)}
+              className="w-full flex items-center justify-between p-6 bg-bege/20 hover:bg-bege/40 transition-colors"
+            >
+              <h3 className="text-xl md:text-2xl font-light text-oliva text-left pr-4">{categoryGroup.category}</h3>
+              <div className="shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-bege/50">
+                {isOpen ? <ChevronUp className="w-6 h-6 text-oliva" /> : <ChevronDown className="w-6 h-6 text-oliva" />}
               </div>
-            ))}
+            </button>
+            
+            {isOpen && (
+              <div className="p-6 border-t border-bege/50 bg-white/90 animate-in slide-in-from-top-4 duration-300">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {categoryGroup.items.map((gift) => (
+                    <div
+                      key={gift.id}
+                      onClick={() => !gift.is_sold_out && setSelectedGift(gift)}
+                      className={`bg-white border p-6 rounded-lg shadow-sm flex flex-col items-center text-center transition-all ${
+                        gift.is_sold_out 
+                          ? 'border-gray-200 opacity-60 grayscale cursor-not-allowed' 
+                          : 'border-bege hover:border-salvia hover:shadow-md cursor-pointer group'
+                      }`}
+                    >
+                      <div className="w-20 h-20 bg-bege/30 rounded-full flex items-center justify-center mb-4 overflow-hidden shrink-0 relative">
+                        {gift.image ? (
+                          <Image src={gift.image} alt={gift.name} fill className="object-cover" />
+                        ) : (
+                          <GiftIcon className={`w-8 h-8 ${gift.is_sold_out ? 'text-gray-400' : 'text-oliva group-hover:scale-110 transition-transform'}`} />
+                        )}
+                      </div>
+                      <h4 className={`font-medium mb-2 flex-grow ${gift.is_sold_out ? 'text-gray-500 line-through' : 'text-grafite'}`}>
+                        {gift.name}
+                      </h4>
+                      <p className={`font-bold mt-auto ${gift.is_sold_out ? 'text-gray-400' : 'text-oliva'}`}>
+                        R$ {gift.price.toFixed(2)}
+                      </p>
+                      <button 
+                        disabled={gift.is_sold_out}
+                        className={`mt-4 text-sm font-medium uppercase tracking-wider transition-colors ${
+                          gift.is_sold_out 
+                            ? 'text-red-500/80 bg-red-50 px-3 py-1 rounded' 
+                            : 'text-salvia group-hover:text-oliva'
+                        }`}
+                      >
+                        {gift.is_sold_out ? 'Esgotado' : 'Presentear'}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       {selectedGift && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
