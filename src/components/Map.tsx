@@ -17,7 +17,7 @@ const customIcon = new L.Icon({
 });
 
 export default function Map() {
-  const position: [number, number] = [-23.5937172, -46.6836484]; // Praça São Lourenço approx coordinates
+  const position: [number, number] = [-23.598428832224016, -46.67909800409035]; // Praça São Lourenço approx coordinates
 
   return (
     <div className="w-full h-80 rounded-lg overflow-hidden border-2 border-salvia/30 shadow-md">
