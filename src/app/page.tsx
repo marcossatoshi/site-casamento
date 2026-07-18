@@ -15,19 +15,20 @@ export default function Home() {
             Joseane Mansano <br /> & <br /> Marcos Satoshi
           </h1>
           
-          <div className="pt-4 pb-2">
-            <h3 className="text-2xl font-medium text-oliva uppercase tracking-widest mb-4">Save the Date</h3>
+          <div className="pt-4 pb-4 space-y-6">
+            <h3 className="text-2xl font-medium text-oliva uppercase tracking-widest">Save the Date</h3>
+            
+            <div>
+              <p className="text-2xl sm:text-3xl font-light text-grafite mb-2">
+                03 de Outubro de 2026
+              </p>
+              <p className="text-xl sm:text-2xl text-oliva font-medium">
+                às 19h00
+              </p>
+            </div>
+
             <p className="text-lg md:text-xl text-grafite/80 font-light max-w-2xl mx-auto">
               Esperamos você para compartilhar esse momento tão especial conosco.
-            </p>
-          </div>
-          
-          <div className="pb-4">
-            <p className="text-2xl sm:text-3xl font-light text-grafite mb-2">
-              03 de Outubro de 2026
-            </p>
-            <p className="text-xl sm:text-2xl text-oliva font-medium">
-              às 19h00
             </p>
           </div>
 

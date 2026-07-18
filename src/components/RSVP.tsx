@@ -32,10 +32,10 @@ export default function RSVP() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-grafite mb-1">Nome Completo</label>
-          <input 
-            name="name" 
-            required 
-            className="w-full p-3 border border-bege rounded focus:outline-none focus:border-salvia" 
+          <input
+            name="name"
+            required
+            className="w-full p-3 border border-bege rounded focus:outline-none focus:border-salvia"
             placeholder="Digite seu nome"
           />
         </div>
@@ -45,9 +45,10 @@ export default function RSVP() {
             <option value="true">Sim, confirmadíssimo!</option>
             <option value="false">Não poderei ir</option>
           </select>
+          <label className="block text-sm font-small text-grafite mb-1 italic">Sua confirmação, considera automaticamente os membros da família que enviamos com o convite!</label>
         </div>
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           disabled={loading}
           className="w-full bg-oliva text-branco p-4 rounded font-medium hover:bg-oliva/90 transition-colors disabled:opacity-70 text-lg uppercase tracking-wider mt-4"
         >

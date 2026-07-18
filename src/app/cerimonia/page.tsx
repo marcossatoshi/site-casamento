@@ -31,12 +31,17 @@ export default function CerimoniaPage() {
                 03 de Outubro de 2026 às 19:00
               </p>
 
-              <p className="text-lg md:text-2xl text-grafite/80 leading-relaxed font-light">
-                Escolhemos um lugar muito especial para celebrarmos este momento inesquecível de nossas vidas. 
-                A cerimônia e a festa acontecerão no mesmo local para maior conforto de todos.
-              </p>
+              <div className="text-lg md:text-xl text-grafite/80 leading-relaxed font-light space-y-4">
+                <p>Escolhemos um lugar muito especial para celebrarmos este momento inesquecível de nossas vidas.</p>
+                <p>A cerimônia e a festa acontecerão no mesmo local para maior conforto de todos.</p>
+              </div>
 
-              <div className="pt-4 space-y-2">
+              <div className="pt-4 space-y-2 border-t border-bege/30">
+                <p className="font-bold text-oliva md:text-xl">Traje:</p>
+                <p className="text-grafite md:text-xl font-light">Esporte fino</p>
+              </div>
+
+              <div className="pt-2 space-y-2">
                 <p className="font-bold text-oliva md:text-xl">Endereço:</p>
                 <p className="text-grafite md:text-xl font-light">
                   Rua Casa do Ator, 608<br />

@@ -27,8 +27,11 @@ export async function getMessages() {
 }
 
 export async function addMessage(formData: FormData) {
-  const name = formData.get('name') as string;
-  const message = formData.get('message') as string;
+  const rawName = formData.get('name') as string || '';
+  const rawMessage = formData.get('message') as string || '';
+
+  const name = rawName.trim().slice(0, 100);
+  const message = rawMessage.trim().slice(0, 2000);
 
   if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
     const { error } = await supabase
@@ -53,7 +56,8 @@ export async function addMessage(formData: FormData) {
 }
 
 export async function submitRSVP(formData: FormData) {
-  const name = formData.get('name') as string;
+  const rawName = formData.get('name') as string || '';
+  const name = rawName.trim().slice(0, 100);
   const email = ''; // Campo removido pelo usuário
   const attending = formData.get('attending') === 'true';
   const guests_count = 1; // Cada RSVP vale como 1 pessoa agora
@@ -88,7 +92,7 @@ export async function getGifts() {
       .from('gifts')
       .select('*')
       .order('id', { ascending: true });
-      
+
     if (error) {
       console.error('Error fetching gifts:', error);
       return [];
@@ -104,7 +108,7 @@ export async function purchaseGift(id: number) {
       .from('gifts')
       .update({ is_sold_out: true })
       .eq('id', id);
-      
+
     if (error) {
       console.error('Error purchasing gift:', error);
       return { success: false, error: error.message };
