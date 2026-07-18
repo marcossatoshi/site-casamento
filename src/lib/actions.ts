@@ -82,6 +82,38 @@ export async function submitRSVP(formData: FormData) {
   return { success: true };
 }
 
+export async function getGifts() {
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    const { data, error } = await supabase
+      .from('gifts')
+      .select('*')
+      .order('id', { ascending: true });
+      
+    if (error) {
+      console.error('Error fetching gifts:', error);
+      return [];
+    }
+    return data;
+  }
+  return [];
+}
+
+export async function purchaseGift(id: number) {
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    const { error } = await supabase
+      .from('gifts')
+      .update({ is_sold_out: true })
+      .eq('id', id);
+      
+    if (error) {
+      console.error('Error purchasing gift:', error);
+      return { success: false, error: error.message };
+    }
+    return { success: true };
+  }
+  return { success: false, error: 'No database connection' };
+}
+
 export async function getConfirmedGuestsCount() {
   if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
     const { data, error } = await supabase

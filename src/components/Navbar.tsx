@@ -13,7 +13,7 @@ export default function Navbar() {
     { href: '/', label: 'Início' },
     { href: '/cerimonia', label: 'Cerimônia' },
     { href: '/presentes', label: 'Presentes' },
-    { href: '/rsvp', label: 'RSVP' },
+    { href: '/rsvp', label: 'Confirmar Presença' },
     { href: '/mensagens', label: 'Mensagens' },
   ];
 

@@ -1,6 +1,11 @@
 import Gifts from '@/components/Gifts';
+import { getGifts } from '@/lib/actions';
 
-export default function PresentesPage() {
+export const revalidate = 0; // Disable cache so sold out items show immediately
+
+export default async function PresentesPage() {
+  const gifts = await getGifts();
+
   return (
     <section className="py-24 px-6 bg-white min-h-screen">
       <div className="max-w-6xl mx-auto text-center">
@@ -10,7 +15,7 @@ export default function PresentesPage() {
           preparamos algumas opções simbólicas de cotas abaixo.
         </p>
         
-        <Gifts />
+        <Gifts initialGifts={gifts} />
       </div>
     </section>
   );

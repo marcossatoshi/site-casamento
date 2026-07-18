@@ -7,18 +7,7 @@ export default async function Home() {
   const displayCount = Math.max(10, confirmedGuests);
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-64px)] font-sans bg-branco text-grafite selection:bg-salvia selection:text-white relative">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero-bg.png"
-          alt="Wedding Background"
-          fill
-          priority
-          className="object-cover object-center opacity-40 mix-blend-multiply"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/50 to-white/90" />
-      </div>
+    <div className="flex flex-col min-h-[calc(100vh-64px)] font-sans text-grafite relative">
 
       {/* HERO SECTION */}
       <section className="relative z-10 flex-grow flex flex-col items-center justify-center text-center p-6 border-b-[16px] border-salvia overflow-hidden">
@@ -53,6 +42,15 @@ export default async function Home() {
               </div>
               <p className="text-xs text-grafite/60 uppercase tracking-widest">Pessoas</p>
             </div>
+          </div>
+          
+          <div className="pt-8">
+            <a 
+              href="/rsvp" 
+              className="inline-block bg-oliva text-white hover:bg-oliva/90 px-8 py-4 rounded-full uppercase text-sm tracking-widest font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-1"
+            >
+              Confirmar Presença
+            </a>
           </div>
         </div>
       </section>
