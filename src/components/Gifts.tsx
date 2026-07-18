@@ -21,14 +21,14 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
   const [copied, setCopied] = useState(false);
   const [isPending, startTransition] = useTransition();
 
-  const pixKey = "casamento@marcosjoseane.com.br"; // Chave PIX
+  const pixKey = "38566190890"; // Chave PIX
 
   // Organizar as categorias na ordem correta
   const CATEGORY_ORDER = [
     'Até R$ 300 (Pequenos Mimos e Passeios Culturais)',
-    'De R$ 301 a R$ 1.500 (Experiências e Passeios)',
+    'De R$ 301 a R$ 1.500 (Experiências)',
     'De R$ 1.501 a R$ 5.000 (Inesquecíveis)',
-    'De R$ 5.001 a R$ 20.000 (Cotas Master e Luxo)'
+    'De R$ 5.001 a R$ 20.000 (Master e Luxo)'
   ];
 
   const groupedGifts = CATEGORY_ORDER.map(cat => ({
@@ -37,8 +37,8 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
   })).filter(group => group.items.length > 0);
 
   const toggleCategory = (category: string) => {
-    setOpenCategories(prev => 
-      prev.includes(category) 
+    setOpenCategories(prev =>
+      prev.includes(category)
         ? prev.filter(c => c !== category)
         : [...prev, category]
     );
@@ -52,7 +52,7 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
 
   const handlePurchase = () => {
     if (!selectedGift) return;
-    
+
     startTransition(async () => {
       const result = await purchaseGift(selectedGift.id);
       if (result.success) {
@@ -79,7 +79,7 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
         const isOpen = openCategories.includes(categoryGroup.category);
         return (
           <div key={index} className="text-left border border-bege rounded-lg bg-white/80 backdrop-blur-sm overflow-hidden shadow-sm transition-all duration-300">
-            <button 
+            <button
               onClick={() => toggleCategory(categoryGroup.category)}
               className="w-full flex items-center justify-between p-6 bg-bege/20 hover:bg-bege/40 transition-colors"
             >
@@ -88,7 +88,7 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
                 {isOpen ? <ChevronUp className="w-6 h-6 text-oliva" /> : <ChevronDown className="w-6 h-6 text-oliva" />}
               </div>
             </button>
-            
+
             {isOpen && (
               <div className="p-6 border-t border-bege/50 bg-white/90 animate-in slide-in-from-top-4 duration-300">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -96,11 +96,10 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
                     <div
                       key={gift.id}
                       onClick={() => !gift.is_sold_out && setSelectedGift(gift)}
-                      className={`bg-white border p-6 rounded-lg shadow-sm flex flex-col items-center text-center transition-all ${
-                        gift.is_sold_out 
-                          ? 'border-gray-200 opacity-60 grayscale cursor-not-allowed' 
-                          : 'border-bege hover:border-salvia hover:shadow-md cursor-pointer group'
-                      }`}
+                      className={`bg-white border p-6 rounded-lg shadow-sm flex flex-col items-center text-center transition-all ${gift.is_sold_out
+                        ? 'border-gray-200 opacity-60 grayscale cursor-not-allowed'
+                        : 'border-bege hover:border-salvia hover:shadow-md cursor-pointer group'
+                        }`}
                     >
                       <div className="w-20 h-20 bg-bege/30 rounded-full flex items-center justify-center mb-4 overflow-hidden shrink-0 relative">
                         {gift.image ? (
@@ -115,13 +114,12 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
                       <p className={`font-bold mt-auto ${gift.is_sold_out ? 'text-gray-400' : 'text-oliva'}`}>
                         R$ {gift.price.toFixed(2)}
                       </p>
-                      <button 
+                      <button
                         disabled={gift.is_sold_out}
-                        className={`mt-4 text-sm font-medium uppercase tracking-wider transition-colors ${
-                          gift.is_sold_out 
-                            ? 'text-red-500/80 bg-red-50 px-3 py-1 rounded' 
-                            : 'text-salvia group-hover:text-oliva'
-                        }`}
+                        className={`mt-4 text-sm font-medium uppercase tracking-wider transition-colors ${gift.is_sold_out
+                          ? 'text-red-500/80 bg-red-50 px-3 py-1 rounded'
+                          : 'text-salvia group-hover:text-oliva'
+                          }`}
                       >
                         {gift.is_sold_out ? 'Esgotado' : 'Presentear'}
                       </button>
@@ -170,7 +168,7 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
                 {copied ? 'Copiado!' : 'Copiar Chave PIX'}
               </button>
             </div>
-            
+
             <button
               onClick={handlePurchase}
               disabled={isPending}
