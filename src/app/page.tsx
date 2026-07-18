@@ -45,7 +45,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pt-8">
+          <div className="pt-8 space-y-6">
             <a
               href="/rsvp"
               className="inline-block bg-oliva text-white hover:bg-oliva/90 px-8 py-4 rounded-full uppercase text-sm tracking-widest font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-1"

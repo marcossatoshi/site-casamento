@@ -6,19 +6,19 @@ export default function CerimoniaPage() {
     <section className="py-16 px-6 bg-transparent min-h-screen flex items-center justify-center">
       <div className="max-w-5xl mx-auto w-full">
         <h1 className="text-4xl font-light text-oliva mb-12 text-center drop-shadow-sm">Cerimônia e Festa</h1>
-        
+
         {/* Card Único */}
         <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-bege overflow-hidden">
-          
+
           {/* Sessão Superior: Foto + Textos */}
           <div className="p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start">
-            
+
             {/* Foto do Local */}
             <div className="w-full md:w-5/12 shrink-0 relative aspect-square rounded-xl overflow-hidden shadow-sm border border-bege/50">
-              <Image 
-                src="/restaurante-praca-sao-lourenco.webp" 
-                alt="Restaurante Praça São Lourenço" 
-                fill 
+              <Image
+                src="/restaurante-praca-sao-lourenco.webp"
+                alt="Restaurante Praça São Lourenço"
+                fill
                 className="object-cover"
               />
             </div>
@@ -26,7 +26,7 @@ export default function CerimoniaPage() {
             {/* Informações */}
             <div className="w-full md:w-7/12 space-y-6 text-center md:text-left flex flex-col justify-center pt-2 md:pt-4">
               <h2 className="text-3xl md:text-4xl font-light text-grafite">Restaurante Praça São Lourenço</h2>
-              
+
               <p className="text-lg md:text-xl tracking-widest text-oliva">
                 03 de Outubro de 2026 às 19:00
               </p>
@@ -48,17 +48,6 @@ export default function CerimoniaPage() {
                   Vila Olímpia, São Paulo - SP
                 </p>
               </div>
-
-              <div className="pt-6">
-                <a 
-                  href="https://maps.google.com/?q=Restaurante+Praca+Sao+Lourenco" 
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-block bg-oliva text-white hover:bg-oliva/90 px-8 py-4 rounded-full uppercase text-sm md:text-base tracking-widest font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-1"
-                >
-                  Abrir no Google Maps
-                </a>
-              </div>
             </div>
           </div>
 
@@ -67,6 +56,16 @@ export default function CerimoniaPage() {
             <MapWrapper />
           </div>
 
+          <div className="pt-6">
+            <a
+              href="https://maps.google.com/?q=Restaurante+Praca+Sao+Lourenco"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block bg-oliva text-white hover:bg-oliva/90 px-8 py-4 rounded-full uppercase text-sm md:text-base tracking-widest font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-1"
+            >
+              Abrir no Google Maps
+            </a>
+          </div>
         </div>
       </div>
     </section>

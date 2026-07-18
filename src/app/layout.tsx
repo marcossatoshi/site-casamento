@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Marcos & Joseane - Casamento",
-  description: "Site do casamento de Marcos e Joseane",
+  title: "Joseane & Marcos - Casamento",
+  description: "Site do casamento de Joseane e Marcos",
 };
 
 export default function RootLayout({
