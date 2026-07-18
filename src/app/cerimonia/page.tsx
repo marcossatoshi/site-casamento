@@ -51,20 +51,21 @@ export default function CerimoniaPage() {
             </div>
           </div>
 
-          {/* Sessão Inferior: Mapa */}
-          <div className="w-full h-[400px] md:h-[500px] border-t border-bege relative z-0">
-            <MapWrapper />
-          </div>
-
-          <div className="pt-6">
-            <a
-              href="https://maps.google.com/?q=Restaurante+Praca+Sao+Lourenco"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block bg-oliva text-white hover:bg-oliva/90 px-8 py-4 rounded-full uppercase text-sm md:text-base tracking-widest font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-1"
-            >
-              Abrir no Google Maps
-            </a>
+          {/* Sessão Inferior: Mapa e Botão */}
+          <div className="w-full flex flex-col items-center">
+            <div className="w-full h-[400px] md:h-[500px] border-y border-bege relative z-0">
+              <MapWrapper />
+            </div>
+            <div className="py-8 bg-bege/10 w-full text-center">
+              <a
+                href="https://maps.google.com/?q=Restaurante+Praca+Sao+Lourenco"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block bg-oliva text-white hover:bg-oliva/90 px-8 py-4 rounded-full uppercase text-sm md:text-base tracking-widest font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-1"
+              >
+                Abrir no Google Maps
+              </a>
+            </div>
           </div>
         </div>
       </div>
