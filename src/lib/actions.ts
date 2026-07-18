@@ -2,9 +2,12 @@
 
 import { supabase } from './supabase';
 
-// Mock data storage in-memory for fallback when no Supabase URL is set
 let mockMessages = [
   { id: '1', name: 'João & Maria', message: 'Desejamos toda a felicidade do mundo para vocês!', created_at: new Date().toISOString() }
+];
+
+let mockRSVPs = [
+  { id: '1', name: 'Mock User', email: 'mock@example.com', attending: true, guests_count: 2, created_at: new Date().toISOString() }
 ];
 
 export async function getMessages() {
@@ -67,6 +70,34 @@ export async function submitRSVP(formData: FormData) {
     return { success: true };
   }
 
+  mockRSVPs.push({
+    id: Date.now().toString(),
+    name,
+    email,
+    attending,
+    guests_count,
+    created_at: new Date().toISOString()
+  });
   console.log('Mock submitRSVP success:', { name, email, attending, guests_count });
   return { success: true };
+}
+
+export async function getConfirmedGuestsCount() {
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    const { data, error } = await supabase
+      .from('rsvp')
+      .select('guests_count')
+      .eq('attending', true);
+      
+    if (error) {
+      console.error('Error fetching guests count:', error);
+      return 0;
+    }
+    
+    return data.reduce((sum, row) => sum + (row.guests_count || 0), 0);
+  }
+
+  return mockRSVPs
+    .filter(rsvp => rsvp.attending)
+    .reduce((sum, rsvp) => sum + rsvp.guests_count, 0);
 }
