@@ -103,7 +103,7 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
                     >
                       <div className="w-20 h-20 bg-bege/30 rounded-full flex items-center justify-center mb-4 overflow-hidden shrink-0 relative">
                         {gift.image ? (
-                          <Image src={gift.image} alt={gift.name} fill className="object-cover" />
+                          <Image src={gift.image} alt={gift.name} fill className="object-cover" unoptimized />
                         ) : (
                           <GiftIcon className={`w-8 h-8 ${gift.is_sold_out ? 'text-gray-400' : 'text-oliva group-hover:scale-110 transition-transform'}`} />
                         )}
@@ -144,11 +144,11 @@ export default function Gifts({ initialGifts }: { initialGifts: Gift[] }) {
             </button>
 
             <div className="text-center mb-6">
-              <div className="w-24 h-24 bg-salvia/20 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden relative border border-salvia/30">
+              <div className="w-48 sm:w-56 aspect-[4/3] bg-salvia/20 rounded-xl flex items-center justify-center mx-auto mb-4 overflow-hidden relative border border-salvia/30 shadow-md">
                 {selectedGift.image ? (
-                  <Image src={selectedGift.image} alt={selectedGift.name} fill className="object-cover" />
+                  <Image src={selectedGift.image} alt={selectedGift.name} fill className="object-cover" unoptimized />
                 ) : (
-                  <GiftIcon className="w-10 h-10 text-oliva" />
+                  <GiftIcon className="w-12 h-12 text-oliva" />
                 )}
               </div>
               <h3 className="text-2xl font-light text-grafite mb-2">{selectedGift.name}</h3>
