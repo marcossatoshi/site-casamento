@@ -11,6 +11,7 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '/', label: 'Início' },
+    { href: '/historia', label: 'Nossa História' },
     { href: '/cerimonia', label: 'Cerimônia' },
     { href: '/presentes', label: 'Presentes' },
     { href: '/rsvp', label: 'Confirmar Presença' },

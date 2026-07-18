@@ -16,7 +16,7 @@ export default function CerimoniaPage() {
             {/* Foto do Local */}
             <div className="w-full md:w-5/12 shrink-0 relative aspect-square rounded-xl overflow-hidden shadow-sm border border-bege/50">
               <Image 
-                src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1000" 
+                src="/restaurante-praca-sao-lourenco.webp" 
                 alt="Restaurante Praça São Lourenço" 
                 fill 
                 className="object-cover"

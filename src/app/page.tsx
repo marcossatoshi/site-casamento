@@ -1,11 +1,6 @@
-import { getConfirmedGuestsCount } from '@/lib/actions';
 import Countdown from '@/components/Countdown';
-import Image from 'next/image';
 
-export default async function Home() {
-  const confirmedGuests = await getConfirmedGuestsCount();
-  const displayCount = Math.max(10, confirmedGuests);
-
+export default function Home() {
   return (
     <div className="flex flex-col min-h-[calc(100vh-64px)] font-sans text-grafite relative">
 
@@ -20,7 +15,14 @@ export default async function Home() {
             Joseane Mansano <br /> & <br /> Marcos Satoshi
           </h1>
           
-          <div className="pt-8 pb-4">
+          <div className="pt-4 pb-2">
+            <h3 className="text-2xl font-medium text-oliva uppercase tracking-widest mb-4">Save the Date</h3>
+            <p className="text-lg md:text-xl text-grafite/80 font-light max-w-2xl mx-auto">
+              Esperamos você para compartilhar esse momento tão especial conosco.
+            </p>
+          </div>
+          
+          <div className="pb-4">
             <p className="text-2xl sm:text-3xl font-light text-grafite mb-2">
               03 de Outubro de 2026
             </p>
@@ -29,18 +31,19 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="pt-8 border-t border-bege/50 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <p className="text-sm uppercase tracking-widest text-grafite/70 mb-4 font-medium">Contagem Regressiva</p>
+          <div className="pt-8 border-t border-bege/50 flex flex-col items-center">
+            <p className="text-sm uppercase tracking-widest text-grafite/70 mb-4 font-medium">Contagem Regressiva</p>
+            <div className="w-full flex justify-center">
               <Countdown targetDate="2026-10-03T19:00:00-03:00" />
             </div>
             
-            <div className="md:border-l border-bege/50 md:pl-8 flex flex-col items-center justify-center">
-              <p className="text-sm uppercase tracking-widest text-grafite/70 mb-2 font-medium">Convidados Confirmados</p>
-              <div className="text-5xl font-light text-oliva mb-2">
-                {displayCount}
-              </div>
-              <p className="text-xs text-grafite/60 uppercase tracking-widest">Pessoas</p>
+            <div className="mt-8 space-y-2 max-w-2xl mx-auto">
+              <p className="text-lg text-grafite/80 font-light">
+                Em breve, a contagem regressiva chegará ao fim e teremos a alegria de celebrar o nosso casamento.
+              </p>
+              <p className="text-lg font-medium text-oliva">
+                Nos vemos em breve! ❤️
+              </p>
             </div>
           </div>
           
